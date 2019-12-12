@@ -17,6 +17,7 @@ app.get('/about', (req, res) => {
 })
 
 
+
 // Middlware
 app.use((req,res,next) => {
     res.status(404)
@@ -28,6 +29,8 @@ app.use((err, req,res,next) => {
     res.send('500 - Server Error')
 })
 
+
+app.use(express.static(__dirname + '/public'))
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`)
