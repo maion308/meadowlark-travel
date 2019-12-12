@@ -2,6 +2,12 @@ const express = require("express")
 const app = express()
 const port = process.env.PORT || 8000
 
+// set-up handlebars view engine as express default view engine
+const handlebars = require('express-handlebars')
+                    .create({defaultLayout: 'main'})
+                    app.engine('handlebars', handlebars.engine)
+                    app.set('view engine', 'handlebars')
+                    
 app.get('/', (req, res) => {
     res.status(200)
     res.send('Meadowlark Travel')
