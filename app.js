@@ -13,9 +13,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-    res.status(200)
-    res.send('About Meadowlark Travel')
+    res.render('about')
 })
+
 
 
 // Middlware
@@ -28,6 +28,9 @@ app.use((err, req,res,next) => {
     res.status(500)
     res.send('500 - Server Error')
 })
+
+
+app.use(express.static(__dirname + '/public'))
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`)
