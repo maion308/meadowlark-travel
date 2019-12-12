@@ -1,5 +1,6 @@
 const express = require("express")
 const app = express()
+const fortune = require('./lib/fortune')
 const port = process.env.PORT || 8000
 
 // set-up handlebars view engine as express default view engine
@@ -13,8 +14,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-    const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)]
-    res.render('about', { fortune: randomFortune })
+    res.render('about', { fortune: fortune.getFortune() })
 })
 
 
@@ -36,11 +36,3 @@ app.use(express.static(__dirname + '/public'))
 app.listen(port, () => {
     console.log(`listening on port ${port}`)
 })
-
-const fortunes = [
-    "Conquer your fears or they will conquer you",
-    "Rivers need Springs",
-    "Do not fear what you don't know",
-    "You will have a pleasant surprise",
-    "whenever possible, keep it simple"
-]
